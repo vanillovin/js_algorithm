@@ -25,5 +25,5 @@ function solution2(arr1, arr2) {
   return answer;
 }
 
-console.log(solution1([1, 3, 9, 5, 2], [3, 2, 5, 7, 8]));
-console.log(solution2([1, 3, 9, 5, 2], [3, 2, 5, 7, 8]));
+console.log(solution1([1, 3, 9, 5, 2], [3, 2, 5, 7, 8])); // [ 2, 3, 5 ]
+console.log(solution2([1, 3, 9, 5, 2], [3, 2, 5, 7, 8])); // [ 2, 3, 5 ]

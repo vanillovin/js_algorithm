@@ -1,5 +1,5 @@
 function solution1(arr1, arr2) {
-  // 일단 sort를 하면 NlogN?
+  // 일단 sort를 하면 NlogN의 시간복잡도
   return [...arr1, ...arr2].sort();
 }
 
@@ -8,6 +8,7 @@ function solution2(arr1, arr2) {
   let answer = [];
   let p1 = 0,
     p2 = 0;
+  // 두개의포인트를잡음 => two pointers algorithm => O(n + m) 시간 복잡도
   let n = arr1.length;
   let m = arr2.length;
   while (p1 < n && p2 < m) {
@@ -22,5 +23,5 @@ function solution2(arr1, arr2) {
 let a = [1, 3, 5];
 let b = [2, 3, 6, 7, 9];
 
-console.log(solution1(a, b));
-console.log(solution2(a, b));
+console.log(solution1(a, b)); // [ 1, 2, 3, 3, 5, 6, 7, 9 ]
+console.log(solution2(a, b)); // [ 1, 2, 3, 3, 5, 6, 7, 9 ]
