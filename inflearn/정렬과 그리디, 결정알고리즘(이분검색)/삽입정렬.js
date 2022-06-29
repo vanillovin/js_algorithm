@@ -2,14 +2,17 @@ function solution(arr) {
   let answer = arr;
 
   for (let i = 0; i < arr.length; i++) {
-    let tmp = arr[i],
-      j;
+    let tmp = arr[i], // 7
+      j; // undefined
+
     for (j = i - 1; j >= 0; j--) {
-      console.log('tmp', tmp, 'i', i, 'j', j);
+      console.log('tmp', tmp, 'i', i, 'j', j, 'arr', arr);
+      console.log('---------------------------------');
       if (arr[j] > tmp) arr[j + 1] = arr[j];
       else break; // tmp보다 작은 값이 발견되면 멈춤
       // 멈춘 곳이 j 지점
     }
+
     arr[j + 1] = tmp;
   }
 

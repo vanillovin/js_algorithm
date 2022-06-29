@@ -17,4 +17,4 @@ function solution(n) {
   return answer;
 }
 
-console.log(solution(11));
+console.log(solution(11)); // 1011
