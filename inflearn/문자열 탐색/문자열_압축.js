@@ -15,19 +15,25 @@ function solution(str) {
   return answer;
 }
 
-// 못 풀음. str[i] === str[i+!]이 아니라 answer랑 str을 비교하려고 했음
-function mySolution(str) {
+function solution1(str) {
   let answer = '';
-  for (let i = 0; i < str.length; i++) {
-    if (answer.length > 0) {
-      if (answer[i - 1] === str[i]) {
-        answer += 1;
-      } else if (!isNaN(answer[i - 1])) {
-      }
+  for (let s of str) {
+    if (!answer.includes(s)) {
+      // 처음
+      answer += s;
+    } else if (answer[answer.length - 1] === s) {
+      // 두 번째 +2
+      answer += 2;
+    } else if (!isNaN(answer[answer.length - 1])) {
+      // 마지막 문자열이 숫자일 때 +1
+      answer = answer.replace(
+        answer.length - 1,
+        Number(answer[answer.length - 1]) + 1
+      );
     }
-    answer += str[i]; // K1 -> K
   }
   return answer;
 }
 
-console.log(solution('KKHSSSSSSSE'));
+console.log(solution('KKHSSSSSSSE')); // K2HS7E
+console.log(solution1('KKHSSSSSSSE')); // K2HS7E
