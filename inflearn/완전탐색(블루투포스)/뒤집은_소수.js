@@ -8,18 +8,15 @@ function isPrime(num) {
 
 function mySolution(arr) {
   let answer = [];
-
   for (let x of arr) {
     const reverseNum = Number(String(x).split('').reverse().join(''));
     if (isPrime(reverseNum)) answer.push(reverseNum);
   }
-
   return answer;
 }
 
 function solution(arr) {
   let answer = [];
-
   for (let x of arr) {
     let res = 0;
     while (x) {
@@ -29,7 +26,6 @@ function solution(arr) {
     }
     if (isPrime(res)) answer.push(res);
   }
-
   return answer;
 }
 
