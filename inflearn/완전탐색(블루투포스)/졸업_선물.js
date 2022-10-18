@@ -5,38 +5,44 @@
 // 모든 상품을 다 할인받았다 가정하고 하는 수밖에 없음
 // => 이런 생각을 해내야 한다..
 
+// N은뭐고 M은뭔지 명확하게 생각하면서 풀기
 function solution(M, products) {
   let answer = 0; // 몇 개 살 수 있는지 최대개수 카운팅
-  let N = products.length;
+  const N = products.length; //
 
   products.sort((a, b) => a[0] + a[1] - (b[0] + b[1])); // 오름차순 정렬
-  // 총비용으로정렬됨 [ [ 2, 2 ], [ 4, 3 ], [ 4, 5 ], [ 6, 6 ], [ 10, 3 ] ]
+  // 더싼비용으로정렬됨 [ [ 2, 2 ], [ 4, 3 ], [ 4, 5 ], [ 6, 6 ], [ 10, 3 ] ]
 
+  // i - 할인받고싶은상품의번호
   for (let i = 0; i < N; i++) {
     // i번째 상품을 할인받는다
 
-    // 상품 가격은 항상 짝수로만 입력되므로 -> /2
-    let leftMoney = M - (products[i][0] / 2 + products[i][1]); //남은예산=>원래예산-(상품가격/2+배송비)
+    // 상품 가격은 항상 짝수로만 입력되므로 -> /2 or *0.5
+    // 현재예산 - 할인을적용한i번째상품의총가격 (배송비는 할인에 포함되지 않음)
+    let leftMoney = M - (products[i][0] / 2 + products[i][1]); // 남은예산=>원래예산-(상품가격/2+배송비)
 
-    let cnt = 1; // 몇개까지살수있는지카운팅
+    let count = 1; // 몇개까지살수있는지카운팅
     for (let j = 0; j < N; j++) {
+      // j는 i랑 달라야 함 샀기 때문
+      const jPrice = products[j][0] + products[j][1];
+
       // 밑에 if가 참이 아닐 때 카운팅 되진 않겠지만 학생수가 많으면 계속 돌아서 break
       // j번째 상품을 사는 총 비용이 남은 예산보다 크면 -> break
-      if (j !== i && products[j][0] + products[j][1] > leftMoney) break;
+      if (j !== i && jPrice > leftMoney) break; // -> 43번째줄(for문탈출)
 
       // 정렬된 순서(최소비용)대로 남은 금액으로 살 수 있는 것들 다 사기
       // "갯수가 중요"하니 비용이 작은 것들로 사야 최대 갯수로 많이 살 수 있음
 
       // i 는 할인된 상품이라 사면 안됨
       //  && 사려고 하는 j 번째 상품 총비용 금액이 남은 예산보다 작거나 같아야 함
-      if (j !== i && products[j][0] + products[j][1] <= leftMoney) {
-        leftMoney -= products[j][0] + products[j][1];
-        cnt++; // 상품을 하나 더 샀다
+      if (j !== i && jPrice <= leftMoney) {
+        leftMoney -= jPrice;
+        count++; // 상품을 하나 더 샀다
       }
     }
-
     // j가 다 돌고
-    answer = Math.max(answer, cnt);
+    // i가 달라질 때마다 count가 달라짐. 2번째를 할인받았을 때 count가 커지는지 answer랑 비교해서 갱신
+    answer = Math.max(answer, count); // cnt는몇명에게사줬는지
   }
 
   return answer;
