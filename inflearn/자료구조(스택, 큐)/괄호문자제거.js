@@ -12,7 +12,6 @@ function solution(str) {
 }
 
 function solution1(s) {
-  let answer;
   let stack = [];
   for (let x of s) {
     if (x === ')') {
@@ -21,8 +20,7 @@ function solution1(s) {
       stack.push(x);
     }
   }
-  answer = stack.join('');
-  return answer;
+  return stack.join('');
 }
 
 let str = '(A(BC)D)EF(G(H)(IJ)K)LM(N)';
